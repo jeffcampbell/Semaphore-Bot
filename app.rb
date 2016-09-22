@@ -37,7 +37,7 @@ def generate_request
   if @user_query.length == 0
     uri = "http://api.giphy.com/v1/gifs/random?tag=appa&api_key=dc6zaTOxFJmzC"
   else
-    uri = "http://api.giphy.com/v1/gifs/random?tag=appa+#{@user_query}&api_key=dc6zaTOxFJmzC""
+    uri = "http://api.giphy.com/v1/gifs/random?tag=appa+#{@user_query}&api_key=dc6zaTOxFJmzC"
   end
 
   request = HTTParty.get(uri)
