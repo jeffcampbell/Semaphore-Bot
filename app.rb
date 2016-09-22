@@ -46,7 +46,7 @@ def generate_request
 end
 
 def generate_text
-  if generate_request[0].nil?
+  if generate_request.nil?
     response = "No gif found. :("
   else
     response = "Yip Yip!"
@@ -55,7 +55,7 @@ def generate_text
 end
 
 def generate_attachment
-  if generate_request[0].nil?
+  if generate_request.nil?
     response = ""
   else
   @imageurl = generate_request["data"]["image_original_url"]
