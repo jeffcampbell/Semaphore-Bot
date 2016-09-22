@@ -34,9 +34,9 @@ def generate_request
   @user_query = params[:text].gsub(/\s/,'+')
 
   if @user_query.length == 0
-    uri = "http://api.giphy.com/v1/gifs/random?tag=avatar+appa&api_key=dc6zaTOxFJmzC"
+    uri = "http://api.giphy.com/v1/gifs/random?tag=airbender+appa&api_key=dc6zaTOxFJmzC"
   else
-    uri = "http://api.giphy.com/v1/gifs/random?tag=avatar+appa+#{@user_query}&api_key=dc6zaTOxFJmzC"
+    uri = "http://api.giphy.com/v1/gifs/random?tag=airbender+appa+#{@user_query}&api_key=dc6zaTOxFJmzC"
   end
 
   request = HTTParty.get(uri)
