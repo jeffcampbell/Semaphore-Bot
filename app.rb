@@ -23,7 +23,6 @@ begin
   unless params[:token] != ENV["OUTGOING_WEBHOOK_TOKEN"]
     response = { text: generate_text }
     response[:response_type] = "in_channel"
-    response[:attachments] = [ generate_attachment ]
     response = response.to_json
   end
 end
@@ -46,22 +45,10 @@ def generate_request
 end
 
 def generate_text
-  if generate_request.nil?
+  if generate_request["data"].nil?
     response = "No gif found. :("
   else
-    response = ""
+    response = generate_request["data"]["image_original_url"]
   end
   response
-end
-
-def generate_attachment
-  if generate_request.nil?
-    response = ""
-  else
-  @imageurl = generate_request["data"]["image_original_url"]
-
-  response = {
-            image_url: "#{@imageurl}" }
-  end
-response
 end
