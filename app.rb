@@ -49,7 +49,7 @@ def generate_text
   if generate_request.nil?
     response = "No gif found. :("
   else
-    response = "Yip Yip!"
+    response = ""
   end
   response
 end
