@@ -30,25 +30,19 @@ end
   body response
 end
 
-def generate_request
-  @user_query = params[:text].gsub(/\s/,'+')
-
-  if @user_query.length == 0
-    uri = "http://api.giphy.com/v1/gifs/random?tag=appa+airbender&api_key=dc6zaTOxFJmzC"
-  else
-    uri = "http://api.giphy.com/v1/gifs/random?tag=appa+airbender+#{@user_query}&api_key=dc6zaTOxFJmzC"
-  end
-
-  request = HTTParty.get(uri)
-  puts "[LOG] #{request.body}"
-  result = JSON.parse(request.body)
-end
-
 def generate_text
-  if generate_request["data"].nil?
-    response = "No gif found. :("
-  else
-    response = generate_request["data"]["image_original_url"]
-  end
-  response
+  user_query = params[:text].gsub!(/[^0-9A-Za-z]/, '')
+
+    char_array = user_query.scan /\w/
+
+    char_array.each_with_index do |value|
+      translations << ":semaphore-#{value}:"
+    end
+
+    if char_array.size > 0
+      response = "#{translations.join("\n")}"
+    else
+      response = "No message. Please flag again"
+    end
+    response
 end
