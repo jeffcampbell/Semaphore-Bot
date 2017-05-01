@@ -34,6 +34,7 @@ def generate_text
   user_query = params[:text] #.gsub!(/[^0-9A-Za-z]/, '')
 
     char_array = user_query.scan(/\w/)
+    translations = []
 
     char_array.each_with_index do |value|
       translations << ":semaphore-#{value}:"
