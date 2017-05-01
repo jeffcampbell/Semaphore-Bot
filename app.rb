@@ -31,7 +31,7 @@ end
 end
 
 def generate_text
-  user_query = params[:text].gsub!(/[^0-9A-Za-z]/, '')
+  user_query = params[:text] #.gsub!(/[^0-9A-Za-z]/, '')
 
     char_array = user_query.scan(/\w/)
 
