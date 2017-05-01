@@ -19,7 +19,7 @@ post "/" do
   response = ""
 begin
   puts "[LOG] #{params}"
-  params[:text] = params[:text]
+  params[:text] = params[:text].gsub(/[^a-zA-Z0-9\-]/,"")
   unless params[:token] != ENV["OUTGOING_WEBHOOK_TOKEN"]
     response = { text: generate_text }
     response[:response_type] = "in_channel"
