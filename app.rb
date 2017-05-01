@@ -19,7 +19,7 @@ post "/" do
   response = ""
 begin
   puts "[LOG] #{params}"
-  params[:text] = params[:text]
+  params[:text] = params[:text].gsub!(/[^0-9A-Za-z]/, '')
   unless params[:token] != ENV["OUTGOING_WEBHOOK_TOKEN"]
     response = { text: generate_text }
     response[:response_type] = "in_channel"
@@ -31,7 +31,7 @@ end
 end
 
 def generate_text
-  user_query = params[:text] #.gsub!(/[^0-9A-Za-z]/, '')
+  user_query = params[:text]
 
     char_array = user_query.scan(/\w/)
     translations = []
